@@ -9,11 +9,28 @@
     <!-- MOBILE SITE -->
     <link rel="canonical" href="https://saleclub.ca">
     <script type="text/javascript">
+    var device;
+
     // check if user is not on a mobile device
     if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
       // true for not mobile device
-      //window.location.replace("https://saleclub.ca"); // redirect user to regular site
+      //window.location.replace("https://saleclub.ca");     // redirect user to regular site
+    } else {
+
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {  // device is ios
+        device = 'ios';
+
+      } else if (/Android/i.test(navigator.userAgent)) {    // device is android
+        device = 'android';
+
+      }
+
     }
+
+
+    /*
+    */
+
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
@@ -34,80 +51,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/shawdow.css">
+    <link rel="stylesheet" href="css/style.css">
 
   </head>
   <body class="bg-danger">
 
     <style media="screen">
-      .app-banner{
-        height: 100px;
-        padding: 10px;
-        position: relative;
-        text-align: center;
-      }
-
-      .app-banner button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-      }
-
-      .app-banner img {
-        height: 70px;
-        position: absolute;
-        top:15px;
-        left:10px;
-      }
-
-      .app-banner p {
-        margin-bottom: 10px;
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      .content {
-        background-color: white;
-        min-height:100vh;
-        text-align:center;
-        padding:30px;
-      }
-
-
-
-
-
-      .footer {
-        height:165px;
-        padding:20px;
-      }
-
-      .footer .contact-link {
-        float:right;
-      }
 
 
     </style>
 
-    <div class="app-banner bg-light hidden">
+    <div class="splash">
+      <img src="assets/logo.svg" alt="logo" class="animate__animated animate__jackInTheBox" id="splash">
+    </div>
+
+    <div class="app-banner bg-light hidden" id="ios-banner">
       <p>Download our app for iOS</p>
-      <a href="#" class="btn btn-danger">Download</a>
-      <img src="assets/icons/ios.svg" alt="App Icon">
+      <a href="https://www.apple.com/ca/app-store/" class="btn btn-danger">Download</a>
+      <img src="assets/icons/ios.svg" alt="app icon">
       <button type="button" name="button" class="btn btn-lg btn-light"><i class="fas fa-times"></i></button>
     </div>
 
-    <div class="app-banner bg-light hidden">
+    <div class="app-banner bg-light hidden" id="android-banner">
       <p>Download our Android app</p>
-      <a href="#" class="btn btn-danger">Download</a>
-      <img src="assets/icons/android.svg" alt="App Icon">
+      <a href="https://play.google.com/store" class="btn btn-danger">Download</a>
+      <img src="assets/icons/android.svg" alt="app icon">
       <button type="button" name="button" class="btn btn-lg btn-light"><i class="fas fa-times"></i></button>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-      <a class="navbar-brand" href="#">
-        <img src="assets/logo-white.svg" style="position:absolute;height:50px;width:50px;top:3px;" alt="Logo">
+      <a class="navbar-brand" href="/">
+        <img src="assets/logo-white.svg" alt="SaleClub.ca">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -115,7 +89,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Features</a>
@@ -127,10 +101,8 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Categories
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="categories-dropdown">
+
             </div>
           </li>
         </ul>
@@ -169,11 +141,11 @@
 
     <!-- Cookies Popup -->
     <div class="cookies-banner bg-light hidden" id="cookies-banner">
-      <h5 class="title text-dark">This site has a cookie</h4>
+      <h5 class="title text-dark">This site has cookies</h4>
       <p class="info text-dark">Do you want <b>your web browser</b> to<br>remember your last viewed category?</p>
       <!--<p class="info text-dark">Do you want to let <b>your web browser</b><br>remember your last viewed category?</p>-->
-      <a href="#" class="text-danger" id="cookies-disable">no thanks</a>
-      <button type="button" name="button" class="btn btn-dark" id="cookies-allow">Sure</button>
+      <a href="#" class="text-danger" id="cookies-disable">learn more</a>
+      <button type="button" name="button" class="btn btn-dark" id="cookies-allow">Okay</button>
     </div>
 
 
@@ -190,6 +162,8 @@
     <script type="text/javascript" src="scripts/main.js"></script>
 
     <script type="text/javascript">
+
+
 
     </script>
 
