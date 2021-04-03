@@ -261,12 +261,32 @@ $(document).ready(function() {
 
 
 
+        // adjusting text sizes
+        jQuery("H1").fitText();
+
+        const windowWidth = $(window).width();
+        if (windowWidth < 320){ // app-banner p witdh < 300px;
+          $('#ios-banner p').text('Our app for iOS');
+          $('#android-banner p').text('Our Android app');
+        } else if (windowWidth < 370) { // app-banner p witdh < 350px;
+          $('#ios-banner p').text('Get our app for iOS');
+          $('#android-banner p').text('Get our Android app');
+        }
 
 
+        /* handle splash */
+        const splash = document.querySelector('#splash');
+        splash.addEventListener('animationend', () => {
+          // do something
+          $('#splash').removeClass('animate__jackInTheBox').addClass('done').delay(1000).queue(function(){
+            $('#splash').addClass('animate__pulse animate__infinite');
+          });
+
+
+        });
 
 
 });
-
 
 function secondsToDhms(seconds) {
   seconds = Number(seconds);
@@ -281,6 +301,43 @@ function secondsToDhms(seconds) {
   var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
   return dDisplay + hDisplay + mDisplay + sDisplay;
 }
+
+
+/* splash functions */
+(function($){
+
+  'use strict';
+    $(window).on('load', function () {
+        if ($(".splash").length > 0)
+        {
+          waitForElementToDisplay("#splash.done",function(){
+            //console.log('u');
+            $(".splash").fadeOut("slow");
+            $('body').css('overflow','auto');
+          },200,10000);
+        }
+    });
+})(jQuery)
+
+function waitForElementToDisplay(selector, callback, checkFrequencyInMs, timeoutInMs) {
+  var startTimeInMs = Date.now();
+  (function loopSearch() {
+    if (document.querySelector(selector) != null) {
+      callback();
+      return;
+    }
+    else {
+      setTimeout(function () {
+        if (timeoutInMs && Date.now() - startTimeInMs > timeoutInMs)
+          return;
+        loopSearch();
+      }, checkFrequencyInMs);
+    }
+  })();
+}
+
+
+
 
 
 /* prevent hash anchor tag jumping */
