@@ -97,6 +97,8 @@ body {
 }
 .app-banner p {
   margin-bottom: 10px;
+  height: 24px;
+  overflow: hidden;
 }
 
 

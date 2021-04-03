@@ -174,11 +174,22 @@
 
     <!-- Scripts -->
     <script type="text/javascript" src="scripts/splash.js"></script>
+    <script type="text/javascript" src="scripts/jquery.fittext.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
 
     <script type="text/javascript">
 
+    // adjusting text sizes
+    jQuery("H1").fitText();
 
+    const windowWidth = $(window).width();
+    if (windowWidth < 320){ // app-banner p witdh < 300px;
+      $('#ios-banner p').text('Our app for iOS');
+      $('#android-banner p').text('Our Android app');
+    } else if (windowWidth < 370) { // app-banner p witdh < 350px;
+      $('#ios-banner p').text('Get our app for iOS');
+      $('#android-banner p').text('Get our Android app');
+    }
 
     </script>
 
