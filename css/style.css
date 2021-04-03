@@ -153,6 +153,15 @@ body {
 
 
 
+/* remove select gloss on ios */
+select, select option {
+  -webkit-appearance:none;
+  text-transform: capitalize;
+}
+
+
+
+
 /* footer */
 .footer {
   height:165px;
