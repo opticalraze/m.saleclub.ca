@@ -9,28 +9,23 @@
     <!-- MOBILE SITE -->
     <link rel="canonical" href="https://saleclub.ca">
     <script type="text/javascript">
-    var device;
+      var device;
 
-    // check if user is not on a mobile device
-    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-      // true for not mobile device
-      //window.location.replace("https://saleclub.ca");     // redirect user to regular site
-    } else {
+      // check if user is not on a mobile device
+      if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        // true for not mobile device
+        //window.location.replace("https://saleclub.ca");     // redirect user to regular site
+      } else {
 
-      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {  // device is ios
-        device = 'ios';
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {  // device is ios
+          device = 'ios';
 
-      } else if (/Android/i.test(navigator.userAgent)) {    // device is android
-        device = 'android';
+        } else if (/Android/i.test(navigator.userAgent)) {    // device is android
+          device = 'android';
+
+        }
 
       }
-
-    }
-
-
-    /*
-    */
-
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
@@ -51,7 +46,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css?v=5">
+    <link rel="stylesheet" href="css/style.min.css">
 
   </head>
   <body class="bg-danger">
