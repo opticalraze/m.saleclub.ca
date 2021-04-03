@@ -41,6 +41,34 @@ body {
   text-transform: capitalize;
 }
 
+
+/* categories section */
+.category .card {
+  margin-bottom: 20px;
+}
+.category .card .card-img-top {
+  padding: 5px;
+}
+.category .card .card-img-top .img {
+  width: 100%;
+  padding-top: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.category .card .regular {
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+.category .card .brand-logo {
+  height: 30px;
+  margin-bottom: 10px;
+}
+.category .card a {
+  text-decoration: none;
+}
+
+
 .navbar-brand img {
   position:absolute;
   height:50px;
