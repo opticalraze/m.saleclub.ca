@@ -10,9 +10,10 @@ $(document).ready(function() {
   var arrayRow;
   var categories;
   var category = Cookies.get('category');
-  var cookies = Cookies.get('cookies');
-  if (cookies == 'no') cookies = false;
-
+  //var cookies = Cookies.get('cookies');
+  //if (cookies == 'no') cookies = false;
+  const cookies = true; // yay! '.ca' websites don't need cookies lol
+  var appbanner = Cookies.get('app');
 
   $.get('https://saleclub.ca/data/sales.json'+nocache, function(d) {
     //data = JSON.parse(d); works on localhost
@@ -97,8 +98,6 @@ $(document).ready(function() {
     if (categories[category].length) {
       categories[category].forEach(function(a) {  // fill div with new category's items
         if(a.expires == "" || a.expires>date){    // check if sale is expired
-          console.log(date);
-          console.log(a.expires);
           const brandLogo = a.brand.toLowerCase().replace(/\s+/g, '');
 
           // possibly need to check here for specific category types to make ads look different depending on what they are
@@ -147,23 +146,20 @@ $(document).ready(function() {
         $(this).hide();
 
         $('body').css('overflow', 'auto'); // show scrollbar
-        $('body').css('margin-right', '0px'); // remove scrollbar padding
-        $('body').addClass('bg-danger').removeClass('bg-light');
+        //$('body').addClass('bg-danger').removeClass('bg-light');
       }
     });
     $("#show-about-popup").on("click", function() {
       $("#about-popup").show();
 
       $('body').css('overflow', 'hidden'); // hide scrollbar
-      $('body').css('margin-right', '10px'); // add scrollbar padding
-      $('body').addClass('bg-light').removeClass('bg-danger');
+      //$('body').addClass('bg-light').removeClass('bg-danger');
     });
     $("#close-about-popup").on('click', function(e){
       $('#about-popup').fadeOut(200);
 
       $('body').css('overflow', 'auto'); // show scrollbar
-      $('body').css('margin-right', '0px'); // remove scrollbar padding
-      $('body').addClass('bg-danger').removeClass('bg-light');
+      //$('body').addClass('bg-danger').removeClass('bg-light');
     });
 
 
@@ -175,23 +171,20 @@ $(document).ready(function() {
           $(this).hide();
 
           $('body').css('overflow', 'auto'); // show scrollbar
-          $('body').css('margin-right', '0px'); // remove scrollbar padding
-          $('body').addClass('bg-danger').removeClass('bg-light');
+          //$('body').addClass('bg-danger').removeClass('bg-light');
         }
       });
       $("#show-notice-popup").on("click", function() {
         $("#notice-popup").show();
 
         $('body').css('overflow', 'hidden'); // hide scrollbar
-        $('body').css('margin-right', '10px'); // add scrollbar padding
-        $('body').addClass('bg-light').removeClass('bg-danger');
+        //$('body').addClass('bg-light').removeClass('bg-danger');
       });
       $("#close-notice-popup").on('click', function(e){
         $('#notice-popup').fadeOut(200);
 
         $('body').css('overflow', 'auto'); // show scrollbar
-        $('body').css('margin-right', '0px'); // remove scrollbar padding
-        $('body').addClass('bg-danger').removeClass('bg-light');
+        //$('body').addClass('bg-danger').removeClass('bg-light');
       });
 
 
@@ -204,23 +197,20 @@ $(document).ready(function() {
             $(this).hide();
 
             $('body').css('overflow', 'auto'); // show scrollbar
-            $('body').css('margin-right', '0px'); // remove scrollbar padding
-            $('body').addClass('bg-danger').removeClass('bg-light');
+            //$('body').addClass('bg-danger').removeClass('bg-light');
           }
         });
         $("#show-contact-popup").on("click", function() {
           $("#contact-popup").show();
 
           $('body').css('overflow', 'hidden'); // hide scrollbar
-          $('body').css('margin-right', '10px'); // add scrollbar padding
-          $('body').addClass('bg-light').removeClass('bg-danger');
+          //$('body').addClass('bg-light').removeClass('bg-danger');
         });
         $("#close-contact-popup").on('click', function(e){
           $('#contact-popup').fadeOut(200);
 
           $('body').css('overflow', 'auto'); // show scrollbar
-          $('body').css('margin-right', '0px'); // remove scrollbar padding
-          $('body').addClass('bg-danger').removeClass('bg-light');
+          //$('body').addClass('bg-danger').removeClass('bg-light');
         });
 
 
@@ -247,23 +237,25 @@ $(document).ready(function() {
 
 
         // app banner
-        if (device == 'ios') {
-          // true for iOS Devices
-          $("#ios-banner").show();  // show ios banner
-          history.scrollRestoration = 'manual';
-        } else if (device == 'android'){
-          // true for Android
-          $("#android-banner").show();  // show android banner
-          history.scrollRestoration = 'manual';
+        if (!appbanner){
+          if (device == 'ios' ) {
+            // true for iOS Devices
+            $("#ios-banner").show();  // show ios banner
+            history.scrollRestoration = 'manual';
+          } else if (device == 'android'){
+            // true for Android
+            $("#android-banner").show();  // show android banner
+            history.scrollRestoration = 'manual';
+          }
         }
 
         $("#ios-banner button").click(function() {
           $("#ios-banner").hide();
-          if (cookies) Cookies.set('app', 'no', { expires: 30 }); // set app banner close cookie
+          Cookies.set('app', 'no', { expires: 7 }); // set app banner close cookie
         });
         $("#android-banner button").click(function() {
           $("#android-banner").hide();
-          if (cookies) Cookies.set('app', 'no', { expires: 30 }); // set app banner close cookie
+          Cookies.set('app', 'no', { expires: 7 }); // set app banner close cookie
         });
 
 
