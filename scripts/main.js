@@ -38,11 +38,11 @@ $(document).ready(function() {
     data.dod.forEach(function(a) {
       //if (firstLoop) {
       if (arrayRow == 0) {
-        $("#dod").append(`<div class="carousel-item active"><a href="${a.link}" target="_blank"><img class="d-block w-100" src="${a.picture}" alt="${a.brand}"></a></div>`);
+        $("#dod").append(`<div class="carousel-item active"><a href="${a.link}" target="_blank"><img class="d-block w-100" src="${a.mobile}" alt="${a.brand}"></a></div>`);
         $("#dodIndicators").append(`<li data-target="#carouselExampleIndicators" data-slide-to="${arrayRow}" class="active"></li>`);
         arrayRow++;
       } else {
-        $("#dod").append(`<div class="carousel-item"><a href="${a.link}" target="_blank"><img class="d-block w-100" src="${a.picture}" alt="${a.brand}"></a></div>`);
+        $("#dod").append(`<div class="carousel-item"><a href="${a.link}" target="_blank"><img class="d-block w-100" src="${a.mobile}" alt="${a.brand}"></a></div>`);
         $("#dodIndicators").append(`<li data-target="#carouselExampleIndicators" data-slide-to="${arrayRow}"></li>`);
         arrayRow++;
       }
