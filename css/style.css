@@ -130,6 +130,18 @@ body {
 
 
 
+
+#about-popup .about-slogan {
+  margin-top: 16px;
+  text-align: center;
+}
+
+#about-popup .about-contact {
+  margin-top: 60px;
+}
+
+
+
 .popup {
   position: fixed;
   height: 100vh;
